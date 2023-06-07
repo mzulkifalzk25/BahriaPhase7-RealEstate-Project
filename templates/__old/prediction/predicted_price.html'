@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Predicted Price{% endblock %}
+
+{% block content %}
+
+<h2>Predicted Price:</h2>
+<p>{{ predicted_price }}</p>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="section-login" style="margin-top: 150px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="login-form">
+          <h2>Login</h2>
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_username" class="form-label">Username</label>
+              {{ form.username }}
+            </div>
+            <div class="mb-3">
+              <label for="id_password" class="form-label">Password</label>
+              {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <div class="mt-4">Already a Member? <a href="{% url 'accounts:register' %}">Register</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Predict Price{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>Predict Price</h2>
+            <form method="POST" class="mt-5">
+                {% csrf_token %}
+                <label for="baths">Bathrooms:</label>
+                <input type="number" name="bathrooms" required><br><br>
+                <label for="bedrooms">Bedrooms:</label>
+                <input type="number" name="bedrooms" required><br><br>
+                <label for="area_marla">Area in (Marlas):</label>
+                <input type="number" name="marla" required><br><br>
+                <label for="near_mosque">Near Masjid:</label>
+                <input type="number" name="nearMasjid" required><br><br>
+                <label for="near_market">Near Market:</label>
+                <input type="number" name="nearMarket" required><br><br>
+                <input type="submit" value="Predict">
+            </form>
+        </div>
+        {% if predicted_price %}
+        <div class="row">
+            <span><h2>Predicted Price: </h2><strong>{{ predicted_price }}</strong></span>
+        </div>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

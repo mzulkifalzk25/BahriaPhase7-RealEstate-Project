@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>You have a new message regarding {{ listing.title }}</h2>
+  <hr>
+  <p>Name: {{ name }}</p>
+  <p>Email: {{ email }}</p>
+  <p>Phone: {{ phone }}</p>
+  <p>Message: {{ message }}</p>
+  <p>Regarding listing:</p>
+  <ul>
+    <li>Address: {{ listing.address }}</li>
+    <li>City: {{ listing.city }}</li>
+    <li>State: {{ listing.state }}</li>
+    <li>Zip Code: {{ listing.zipcode }}</li>
+    <li>Price: {{ listing.price }}</li>
+  </ul>
+{% endblock %}

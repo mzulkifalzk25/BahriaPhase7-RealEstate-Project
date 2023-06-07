@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Contact Agent</h1>
+    <p>Please fill out the form below to contact the agent regarding this listing.</p>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Send" class="btn btn-primary">
+    </form>
+  </div>
+{% endblock %}

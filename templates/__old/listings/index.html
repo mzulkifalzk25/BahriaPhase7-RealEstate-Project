@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <h1>Latest Listings</h1>
+  {% for listing in listings %}
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ listing.photo_main.url }}" class="card-img" alt="{{ listing.title }}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ listing.title }}</h5>
+            <p class="card-text">{{ listing.description }}</p>
+            <p class="card-text"><small class="text-muted">Listed on {{ listing.list_date|date:"F j, Y" }}</small></p>
+            <a href="{% url 'listing' listing.id %}" class="btn btn-primary">View Listing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No listings found.</p>
+  {% endfor %}
+
+  <div class="pagination">
+    {% if listings.has_previous %}
+      <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; First</a>
+      <a href="?page={{ listings.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&lsaquo; Previous</a>
+    {% endif %}
+    <span class="current-page">{{ listings.number }}</span>
+    <span class="total-pages">of {{ listings.paginator.num_pages }}</span>
+    {% if listings.has_next %}
+      <a href="?page={{ listings.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next &rsaquo;</a>
+      <a href="?page={{ listings.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Last &raquo;</a>
+    {% endif %}
+  </div>
+{% endblock %}

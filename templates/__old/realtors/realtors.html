@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<style>
+.card-img-top {
+    max-height: 200px; /* set the max height of the image */
+    object-fit: cover; /* resize the image to cover the entire card */
+}
+</style>
+
+{% block content %}
+  <h1>Our Realtors</h1>
+  <hr>
+  <div class="row">
+    {% for realtor in realtors %}
+      <div class="col-md-4 mb-3">
+        <div class="card card-sm">
+          <img class="card-img-top img-fluid" style="height: 500px" src="{{ realtor.photo.url }}" alt="{{ realtor.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ realtor.name }}</h5>
+            <p class="card-text">{{ realtor.phone }}</p>
+            <p class="card-text">{{ realtor.email }}</p>
+            <a href="{% url 'realtors:realtor' realtor.id %}" class="btn btn-primary">View Profile</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-fluid" src="{{ realtor.photo.url }}" alt="{{ realtor.name }}">
+    </div>
+    <div class="col-md-8">
+      <h1>{{ realtor.name }}</h1>
+      <hr>
+      <p class="lead">{{ realtor.description }}</p>
+      <ul class="list-group">
+        <li class="list-group-item">Email: {{ realtor.email }}</li>
+        <li class="list-group-item">Phone: {{ realtor.phone }}</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <h2>Listing by {{ realtor.name }}</h2>
+  <hr>
+  {% if listings %}
+    <div class="row">
+      {% for listing in listings %}
+        <div class="col-md-4 mb-3">
+          <div class="card listing-card">
+            <img class="card-img-top" style="height: 350px; width: 350px;" src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ listing.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ listing.address }}</h6>
+              <p class="card-text">{{ listing.description|truncatewords:30 }}</p>
+              <a href="{% url 'listings:listing' listing.id %}" class="btn btn-primary btn-block">Details</a>
+            </div>
+            <div class="card-overlay"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No listings found.</p>
+  {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    .listing-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease-out;
+    }
+
+    .listing-card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .listing-card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title,
+    .card-subtitle,
+    .card-text {
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      font-size: 0.8rem;
+    }
+
+    .btn-primary {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+{% endblock %}

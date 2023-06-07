@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <!-- ======= Intro Section ======= -->
+  <div class="intro intro-carousel swiper position-relative">
+
+    <div class="swiper-wrapper">
+    {% comment %} start loop {% endcomment %}
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url({% static 'assets/img/slide-1.jpg' %})">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+
+                    <h1 class="intro-title mb-4 ">
+                      <span class="color-b">Get </span> Your
+                      <br> Dream House
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% comment %} end loop {% endcomment %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div><!-- End Intro Section -->
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section class="section-services section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Our Services</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        {% comment %} start services loop {% endcomment %}
+          <div class="col-md-4">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+               <!-- <div class="card-box-ico">
+                  <span class="bi bi-cart"></span>
+                </div> -->
+                <div class="card-title-c align-self-center">
+                  <h2 class="title-c">Property Value</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">
+                  We offer a comprehensive property valuation service that helps homeowners and investors determine the market value of their properties.
+                  Our experienced team utilizes industry-standard valuation methods, local market analysis, and current trends to provide accurate and reliable property valuations.
+                  This service is invaluable for individuals looking to sell, buy, or refinance a property.
+                </p>
+              </div>
+              <div class="card-footer-c">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+               <!-- <div class="card-box-ico">
+                  <span class="bi bi-calendar4-week"></span>
+                </div> -->
+                <div class="card-title-c align-self-center">
+                  <h2 class="title-c">Consultation</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">
+                  We offers personalized consultation services provided by experienced professionals in the field.
+                  Whether you're a first-time homebuyer, a real estate investor, or someone looking to upgrade their property,
+                  our consultants can provide expert advice, guidance, and market insights. They can help you navigate the real estate landscape, answer your questions, and assist you in making informed decisions.
+                </p>
+              </div>
+              <div class="card-footer-c">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+               <!-- <div class="card-box-ico">
+                  <span class="bi bi-card-checklist"></span>
+                </div> -->
+                <div class="card-title-c align-self-center">
+                  <h2 class="title-c">Assistance</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">
+                  Obtaining a mortgage can be a complex and overwhelming process.To simplify this journey, our website offers mortgage assistance services, connecting users with reputable
+                  lenders and mortgage brokers. Through our platform, you can explore various mortgage options, compare interest rates,
+                  and access useful resources to assist you in securing a suitable mortgage for you.
+                </p>
+              </div>
+              <div class="card-footer-c">
+
+              </div>
+            </div>
+          </div>
+        {% comment %} end services loop {% endcomment %}
+        </div>
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Latest Properties Section ======= -->
+    <section class="section-property section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Latest Properties</h2>
+              </div>
+              <div class="title-link">
+                <a href="{% url 'listings:listings' %}">All Property
+                  <span class="bi bi-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="property-carousel" class="swiper">
+          <div class="swiper-wrapper">
+          {% comment %} start carousel loop {% endcomment %}
+          {% for listing in listings %}
+            <div class="carousel-item-b swiper-slide">
+              <div class="card-box-a card-shadow">
+                <div class="img-box-a">
+                  <img style="height: 350px; width: 350px" class="img-fluid img-a" src="{{ listing.photo_main.url }}" alt="">
+                </div>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                     <!-- <h2 class="card-title-a">
+                        <a href="{% url 'listings:listing' listing.id %}">{{ listing.title }}
+                          <br />{{ listing.description }}</a> -->
+                      </h2>
+                    </div>
+                    <div class="card-body-a">
+                      <div class="price-box d-flex">
+                        <span class="price-a">{{ listing.price }}</span>
+                      </div>
+                      <a href="{% url 'listings:listing' listing_id=listing.id %}" class="link-a">Click here to view
+                        <span class="bi bi-chevron-right"></span>
+                      </a>
+                    </div>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Area</h4>
+                          <span>{{ listing.area_in_marla }}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Beds</h4>
+                          <span>{{ listing.bedrooms }}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Baths</h4>
+                          <span>{{ listing.bathrooms }}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Near Masjid</h4>
+                          <span>{{ listing.is_published }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          {% comment %} end carousel loop {% endcomment %}
+          </div>
+        </div>
+        <div class="propery-carousel-pagination carousel-pagination"></div>
+      </div>
+    </section><!-- End Latest Properties Section -->
+
+    <!-- ======= Agents Section ======= -->
+    <section class="section-agents section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Best Agents</h2>
+              </div>
+              <div class="title-link">
+                <a href="{% url 'realtors:realtors' %}">All Agents
+                  <span class="bi bi-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {% for realtor in realtors %}
+          <div class="col-md-4">
+            <div class="card-box-d">
+              <div class="card-img-d">
+                <img src="{{ realtor.photo.url }}" alt="" class="img-d img-fluid">
+              </div>
+              <div class="card-overlay card-overlay-hover">
+                <div class="card-header-d">
+                  <div class="card-title-d align-self-center">
+                    <h3 class="title-d">
+                      <a href="{% url 'realtors:realtor' realtor.id %}" class="link-two">{{ realtor.name }}</a>
+                    </h3>
+                  </div>
+                </div>
+                <div class="card-body-d">
+                  <p class="content-d color-text-a">{{ realtor.description }}</p>
+                  <div class="info-agents color-a">
+                    <p><strong>Phone: </strong> {{ realtor.phone }}</p>
+                    <p><strong>Email: </strong> {{ realtor.email }}</p>
+                  </div>
+                </div>
+                <div class="card-footer-d">
+                  <div class="socials-footer d-flex justify-content-center">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                          <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                          <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                          <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                          <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Agents Section -->
+  </main><!-- End #main -->
+
+{% endblock %}

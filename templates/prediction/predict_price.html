@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Predict Price{% endblock %}
+
+{% block content %}
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h2 class="mt-5">Predict Price</h2>
+            <form method="POST" class="mt-5">
+                <h2 class="mt-5">Predict Price</h2>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="baths" class="form-label">Bathrooms:</label>
+                    <input type="number" class="form-control" name="bathrooms" required>
+                </div>
+                <div class="mb-3">
+                    <label for="bedrooms" class="form-label">Bedrooms:</label>
+                    <input type="number" class="form-control" name="bedrooms" required>
+                </div>
+                <div class="mb-3">
+                    <label for="area_marla" class="form-label">Area in (Marlas):</label>
+                    <input type="number" class="form-control" name="marla" required>
+                </div>
+                <div class="mb-3">
+                    <label for="near_mosque" class="form-label">Near Masjid (1 Yes, 0 No):</label>
+                    <input type="number" class="form-control" name="nearMasjid" required>
+                </div>
+                <div class="mb-3">
+                    <label for="near_market" class="form-label">Near Market (1 Yes, 0 No):</label>
+                    <input type="number" class="form-control" name="nearMarket" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+
+        {% if predicted_price %}
+        <div class="row mt-5">
+            <h2 class="mt-3">Predicted Price:</h2>
+            <h4>Rs.{{ predicted_price }}</h4>
+        </div>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}
